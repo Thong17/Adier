@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - {% block title %}{% endblock %}</title>
+    {% block style %}{% endblock %}
+    <link rel="stylesheet" href="{{url_for('static', filename='css/dist/style.css')}}">
+</head>
+<body>
+    <header>
+        <main>
+            <nav>
+                <div id="logo">LOGO</div>
+                <ul id="navbar">
+                    <li>Navbar#1</li>
+                    <li>Navbar#2</li>
+                    <li>Navbar#3</li>
+                </ul>
+            </nav>
+            {% block content %}{% endblock %}
+        </main>
+    </header>
+    <footer>
+        <p class="color-text" style="font-size: 13px;">Copyright &copy; 2020 All Rights Reserved by <a href="#">Team7</a></p>
+    </footer>
+    {% block script %}{% endblock %}
+    <script src="{{url_for('static', filename='js/script.js')}}"></script>
+</body>
+</html>
