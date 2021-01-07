@@ -1,7 +1,72 @@
 {% extends 'layout/layout.html' %}
 
+{% block style %}
+<style>
+    .parallax-container {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 40%, rgba(19,58,66,1) 100%);
+    }
+
+    .hide {
+        display: none;
+    }
+
+    .download-inp {
+        width: 350px;
+        background-color: rgba(0, 0, 0, 0.1);
+        border-radius: 7px;
+        border: 1px solid  rgba(255, 255, 255, 0.3);
+        outline: none;
+        box-shadow: none;
+        padding: 5px 10px;
+    }
+
+    .loader {
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        background-color: rgba(0, 0, 0, 0.5);
+        transition: 0.3s ease;
+    }
+
+</style>
+{% endblock %}
+
 {% block content %}
-<div class="container">
-    <h1>Hello World</h1>
+<div class="parallax-container">
+    <form action="/downloader" method="post" id="download-form">
+        <input type="text" name="downlod" id="download" class="download-inp" autocomplete="off">
+        <input type="submit" value="Download" class="hide">
+    </form>
+    <div class="loader hide">
+
+    </div>
 </div>
+{% endblock %}
+
+{% block script %}
+<script>
+    $(document).ready(function() {
+        $('#download-form').on('submit', function() {
+            var input = $('#download').val()
+            $.ajax({
+                url: '/download',
+                type: 'POST',
+                data: {input: input},
+                beforeSend: function() {
+                    $('.loader').removeClass('hide')
+                },
+                success: function(data) {
+                    $('#download').val('')
+                    $('.loader').addClass('hide')
+                }
+            })
+            return false
+        })
+    })
+</script>
 {% endblock %}
