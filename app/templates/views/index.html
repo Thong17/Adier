@@ -8,7 +8,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 40%, rgba(19,58,66,1) 100%);
+        background-color: #333333;
     }
 
     .hide {
@@ -23,6 +23,8 @@
         outline: none;
         box-shadow: none;
         padding: 5px 10px;
+        color: #f3f3f3;
+        font-weight: 300;
     }
 
     .loader {
@@ -39,7 +41,7 @@
 {% block content %}
 <div class="parallax-container">
     <form action="/downloader" method="post" id="download-form">
-        <input type="text" name="downlod" id="download" class="download-inp" autocomplete="off">
+        <input type="text" name="downlod" id="download" class="download-inp" autocomplete="off" placeholder="Youtube URL">
         <input type="submit" value="Download" class="hide">
     </form>
     <div class="loader hide">
